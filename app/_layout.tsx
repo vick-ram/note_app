@@ -1,7 +1,8 @@
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
-import { View, Text} from 'react-native';
+import { View, Text } from 'react-native';
+import { Stack} from 'expo-router';
 
 import "../global.css";
 
@@ -13,9 +14,5 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-  return (
-    <View>
-      <Text>Hello Rect developer</Text>
-    </View>
-  );
+  return <Stack/>
 }
