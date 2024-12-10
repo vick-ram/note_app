@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {useRouter } from 'expo-router';
+import {useRouter, Link } from 'expo-router';
 import { View, Text, TextInput, Button, Pressable, StyleSheet } from 'react-native';
 
 export default function SignUpScreen() {
@@ -13,7 +13,7 @@ export default function SignUpScreen() {
             <Button title="Sign up" />
             <View style={styles.haveAccount}>
                 <Text>Already have account?</Text>
-                <Pressable>Login</Pressable>
+                <Link  href='/signin'>Sign in</Link>
             </View>
         </View>
     )
