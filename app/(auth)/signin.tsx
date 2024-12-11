@@ -1,25 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, TextInput, Button, Pressable, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
-import { useRouter, Link} from 'expo-router';
+import { Link, useRouter } from 'expo-router';
+import {useAuth } from '../context/auth-context';
 
 const logoImage = require('@/assets/images/note_logo.svg');
 
 const SigninScreen = () => {
+
+    const [email, setEmail ] = useState('');
+    const [password, setPassword] = useState('');
+
     const router = useRouter();
 
-    const navigateToSignup = () => {
-        router.push('/sign-up')
-    }
-
+    const { signin} = useAuth();
     return (
         <>
             <View style={styles.container} >
                 <Image source={logoImage} style={styles.image} />
                 <Text>Sign in</Text>
-                <TextInput style={styles.input} placeholder="email"/>
-                <TextInput style={styles.input}  placeholder="password" />
-                <Button title="Signin" />
+                <TextInput value={email} onChangeText={(newEmail) => setEmail(newEmail)} style={styles.input} placeholder="email"/>
+                <TextInput value={password} onChangeText={(newPassword) => setPassword(newPassword)} style={styles.input}  placeholder="password" secureTextEntry={true} />
+                <Button onPress={() => signin(email, password)} title="Signin" />
                 <View style={styles.haveAccount}>
                     <Text>Don't have an account?</Text>
                     <Link href='/signup'>Sign up</Link>
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '100%',
-        paddingBottom: 8
+        padding: 10
     }
 })
 
