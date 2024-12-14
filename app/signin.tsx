@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { Link, useRouter } from 'expo-router';
 import {useAuth } from './context/auth-context';
@@ -17,22 +17,32 @@ const SigninScreen = () => {
 
     const { signin} = useAuth();
     return (
-        <>
             <View style={styles.container} >
                 <Image
                     source={logoImage}
                     style={styles.image}
                 />
                 <Text style={styles.title}>Sign in</Text>
-                <TextField placeholder="Email" value={email} onChangeText={(newEmail) => setEmail(newEmail)}/>
-                <TextField placeholder="Password" value={password} onChangeText={(newPassword) => setPassword(newPassword)} secureTextEntry={true}/>
-                <Button title="Sign in" onPress={() => signin(email, password)} />
+                <TextField
+                    placeholder="Email" 
+                    value={email} 
+                    onChangeText={setEmail}
+                />
+                <TextField 
+                    placeholder="Password" 
+                    value={password} 
+                    onChangeText={setPassword} 
+                    secureTextEntry={true}
+                />
+                <Button 
+                    title="Sign in" 
+                    onPress={() => signin(email, password)}
+                />
                 <View style={styles.haveAccount}>
                     <Text style={styles.accountText}>Don't have an account?</Text>
                     <Link href='/signup' style={styles.signupLink}>Sign up</Link>
                 </View>
             </View>
-        </>
     )
 }
 
